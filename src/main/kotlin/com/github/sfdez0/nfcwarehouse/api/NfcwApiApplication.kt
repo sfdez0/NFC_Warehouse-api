@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class NfcwApiApplication
 
 fun main(args: Array<String>) {
-	runApplication<NfcwApiApplication>(*args)
+    runApplication<NfcwApiApplication>(*args)
 }

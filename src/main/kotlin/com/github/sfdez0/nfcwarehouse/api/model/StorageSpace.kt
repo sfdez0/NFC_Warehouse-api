@@ -24,23 +24,20 @@ class StorageSpace(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-
     /**
      * Storage Space name
      */
     @Column(nullable = false)
     var name: String,
-
     /**
      * Storage Space N:1 Location
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id")
     var location: Location,
-
     /**
      * StorageSpace 1:N Item
      */
     @OneToMany(mappedBy = "storageSpace", cascade = [CascadeType.ALL])
-    val items: MutableList<Item> = mutableListOf()
+    val items: MutableList<Item> = mutableListOf(),
 )

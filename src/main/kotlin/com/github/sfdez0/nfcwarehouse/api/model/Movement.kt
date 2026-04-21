@@ -14,33 +14,29 @@ import java.time.Instant
  */
 @Entity
 @Table(name = "movements")
-class Movement (
+class Movement(
     /**
      * Movement ID
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-
     /**
      * Movement N:1 Item
      */
     @ManyToOne
     @JoinColumn(name = "item_id")
     val item: Item,
-
     /**
      * Quantity moved
      */
     val quantityChanged: Int,
-
     /**
      * Movement timestamp
      */
     val timestamp: Instant = Instant.now(),
-
     /**
      * Movement description
      */
-    val description: String? = null
+    val description: String? = null,
 )

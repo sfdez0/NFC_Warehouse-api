@@ -21,21 +21,18 @@ class Location(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-
     /**
      * Location name
      */
     @Column
     var name: String,
-
     /**
      * Location description
      */
     var description: String? = null,
-
     /**
      * Location 1:N Storage Space
      */
     @OneToMany(mappedBy = "location", cascade = [(CascadeType.ALL)])
-    val storageSpaces: MutableList<StorageSpace> = mutableListOf()
+    val storageSpaces: MutableList<StorageSpace> = mutableListOf(),
 )
