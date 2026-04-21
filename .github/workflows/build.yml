@@ -23,5 +23,8 @@ jobs:
       - name: Give execution permissions to Gradle
         run: chmod +x gradlew
 
+      - name: Check formatting (Ktlint)
+        run: ./gradlew ktlintCheck
+
       - name: Compile
         run: ./gradlew assemble
