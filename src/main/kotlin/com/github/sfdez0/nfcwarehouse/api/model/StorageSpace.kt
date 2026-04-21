@@ -25,6 +25,11 @@ class StorageSpace(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     /**
+     * NFC Tag ID
+     */
+    @Column(unique = true, nullable = false)
+    val nfcTagId: String,
+    /**
      * Storage Space name
      */
     @Column(nullable = false)
