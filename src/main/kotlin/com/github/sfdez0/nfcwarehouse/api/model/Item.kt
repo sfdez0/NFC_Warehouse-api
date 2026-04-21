@@ -1,5 +1,6 @@
 package com.github.sfdez0.nfcwarehouse.api.model
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -43,5 +44,6 @@ class Item(
      * Item 1:N Movement
      */
     @OneToMany(mappedBy = "item", cascade = [CascadeType.ALL])
+    @JsonManagedReference
     val movements: MutableList<Movement> = mutableListOf(),
 )

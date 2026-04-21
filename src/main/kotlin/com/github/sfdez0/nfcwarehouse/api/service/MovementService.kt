@@ -6,14 +6,17 @@ import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 
+// TODO: Implement final endpoints and DTOs
 @Service
 class MovementService(
     private val movementRepository: MovementRepository,
 ) {
-    fun findById(id: Long): Movement =
+    fun getAll(): List<Movement> = movementRepository.findAll()
+
+    fun get(id: Long): Movement =
         movementRepository.findById(id).orElseThrow {
-            ResponseStatusException(HttpStatus.NOT_FOUND, "Location not found")
+            ResponseStatusException(HttpStatus.NOT_FOUND, "Movement not found")
         }
 
-    fun save(movement: Movement): Movement = movementRepository.save(movement)
+    fun create(movement: Movement): Movement = movementRepository.save(movement)
 }

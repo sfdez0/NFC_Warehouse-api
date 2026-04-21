@@ -1,5 +1,6 @@
 package com.github.sfdez0.nfcwarehouse.api.model
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -34,5 +35,6 @@ class Location(
      * Location 1:N Storage Space
      */
     @OneToMany(mappedBy = "location", cascade = [(CascadeType.ALL)])
+    @JsonManagedReference
     val storageSpaces: MutableList<StorageSpace> = mutableListOf(),
 )
