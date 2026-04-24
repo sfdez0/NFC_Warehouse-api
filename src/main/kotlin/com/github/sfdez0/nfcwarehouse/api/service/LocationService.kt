@@ -47,4 +47,18 @@ class LocationService(
      * @return The [Location] including its database-generated ID.
      */
     fun create(location: Location): Location = locationRepository.save(location)
+
+    /**
+     * Deletes an [Location] by its unique ID.
+     * * This method checks if the [Location] exists and tries to delete it
+     *
+     * @param id The unique ID of the location to delete.
+     * @return true if the location was deleted, false otherwise.
+     */
+    fun delete(id: Long): Boolean {
+        if (!locationRepository.existsById(id)) return false
+
+        locationRepository.deleteById(id)
+        return true
+    }
 }

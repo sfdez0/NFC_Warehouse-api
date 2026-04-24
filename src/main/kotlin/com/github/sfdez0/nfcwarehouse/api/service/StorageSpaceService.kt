@@ -66,4 +66,18 @@ class StorageSpaceService(
 
         return savedStorageSpace.toResponse()
     }
+
+    /**
+     * Deletes an [StorageSpace] by its unique ID.
+     * * This method checks if the [StorageSpace] exists and tries to delete it
+     *
+     * @param id The unique ID of the storage space to delete.
+     * @return true if the storage space was deleted, false otherwise.
+     */
+    fun delete(id: Long): Boolean {
+        if (!storageSpaceRepository.existsById(id)) return false
+
+        storageSpaceRepository.deleteById(id)
+        return true
+    }
 }

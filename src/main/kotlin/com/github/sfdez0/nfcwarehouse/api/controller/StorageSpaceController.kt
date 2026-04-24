@@ -4,6 +4,7 @@ import com.github.sfdez0.nfcwarehouse.api.dto.StorageSpaceCreateDTO
 import com.github.sfdez0.nfcwarehouse.api.dto.StorageSpaceResponseDTO
 import com.github.sfdez0.nfcwarehouse.api.service.StorageSpaceService
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -60,4 +61,17 @@ class StorageSpaceController(
 
         return ResponseEntity.created(uri).body(newStorageSpace) // 201 Created
     }
+
+    /**
+     * DELETE /api/v1/storagespaces/{id}
+     */
+    @DeleteMapping("/{id}")
+    fun deleteStorageSpace(
+        @PathVariable id: Long,
+    ): ResponseEntity<Unit> =
+        if (storageSpaceService.delete(id)) {
+            ResponseEntity.noContent().build() // 204 No Content
+        } else {
+            ResponseEntity.notFound().build() // 404 Not Found
+        }
 }

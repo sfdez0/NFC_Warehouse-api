@@ -52,4 +52,18 @@ class ItemService(
 
         return savedItem.toResponse()
     }
+
+    /**
+     * Deletes an [Item] by its unique ID.
+     * * This method checks if the [Item] exists and tries to delete it
+     *
+     * @param id The unique ID of the item to delete.
+     * @return true if the item was deleted, false otherwise.
+     */
+    fun delete(id: Long): Boolean {
+        if (!itemRepository.existsById(id)) return false
+
+        itemRepository.deleteById(id)
+        return true
+    }
 }
