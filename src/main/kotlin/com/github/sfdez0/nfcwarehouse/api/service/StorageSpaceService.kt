@@ -16,29 +16,23 @@ class StorageSpaceService(
     private val locationService: LocationService,
 ) {
     /**
-     * Retrieves all StorageSpaces as a [StorageSpaceResponseDTO] list.
+     * Retrieves all [StorageSpace] as a [StorageSpaceResponseDTO] list.
      *
      * @return A list of all storage spaces mapped to their response format.
      */
     fun getAll(): List<StorageSpaceResponseDTO> = storageSpaceRepository.findAll().map { it.toResponse() }
 
     /**
-     * Retrieves a specific StorageSpace by its unique ID and converts it to a [StorageSpaceResponseDTO].
+     * Retrieves a specific [StorageSpace] by its unique ID and converts it to a [StorageSpaceResponseDTO].
      *
      * @param id The unique ID of the storage space to find.
      * @return The [StorageSpaceResponseDTO] if the storage space exists.
      * @throws ResponseStatusException 404 error if no storage space is found with the given [id].
      */
-    fun get(id: Long): StorageSpaceResponseDTO {
-        val dto =
-            storageSpaceRepository.findById(id).orElseThrow {
-                ResponseStatusException(HttpStatus.NOT_FOUND, "Storage Space not found")
-            }
-        return dto.toResponse()
-    }
+    fun get(id: Long): StorageSpaceResponseDTO? = storageSpaceRepository.findById(id).map { it.toResponse() }.orElse(null)
 
     /**
-     * Retrieves a specific StorageSpace by its unique ID.
+     * Retrieves a specific [StorageSpace] by its unique ID.
      *
      * @param id The unique ID of the storage space to find.
      * @return The [StorageSpace] if the storage space exists.
@@ -50,7 +44,7 @@ class StorageSpaceService(
         }
 
     /**
-     * Creates a new StorageSpace and associates it with an existing location.
+     * Creates a new [StorageSpace] and associates it with an existing location.
      * * This method fetches the required [Location] entity, maps the incoming
      * [StorageSpaceCreateDTO] to a new [StorageSpace], and saves it to the database.
      *

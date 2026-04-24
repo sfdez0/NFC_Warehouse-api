@@ -13,29 +13,23 @@ class LocationService(
     private val locationRepository: LocationRepository,
 ) {
     /**
-     * Retrieves all Locations as a [LocationResponseDTO] list.
+     * Retrieves all [Location] as a [LocationResponseDTO] list.
      *
      * @return A list of all locations mapped to their response format.
      */
     fun getAll(): List<LocationResponseDTO> = locationRepository.findAll().map { it.toResponse() }
 
     /**
-     * Retrieves a specific Location by its unique ID and converts it to a [LocationResponseDTO].
+     * Retrieves a specific [Location] by its unique ID and converts it to a [LocationResponseDTO].
      *
      * @param id The unique ID of the location to find.
-     * @return The [LocationResponseDTO] if the location exists.
+     * @return The [LocationResponseDTO] if the location exists, or null if not found.
      * @throws ResponseStatusException 404 error if no location is found with the given [id].
      */
-    fun get(id: Long): LocationResponseDTO {
-        val dto =
-            locationRepository.findById(id).orElseThrow {
-                ResponseStatusException(HttpStatus.NOT_FOUND, "Location not found")
-            }
-        return dto.toResponse()
-    }
+    fun get(id: Long): LocationResponseDTO? = locationRepository.findById(id).map { it.toResponse() }.orElse(null)
 
     /**
-     * Retrieves a specific Location by its unique ID.
+     * Retrieves a specific [Location] by its unique ID.
      *
      * @param id The unique ID of the location to find.
      * @return The [Location] if the location exists.
@@ -47,7 +41,7 @@ class LocationService(
         }
 
     /**
-     * Creates a new Location.
+     * Creates a new [Location].
      *
      * @param location The [Location] entity to create and save.
      * @return The [Location] including its database-generated ID.

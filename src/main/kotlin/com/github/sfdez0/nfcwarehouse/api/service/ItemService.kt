@@ -5,7 +5,6 @@ import com.github.sfdez0.nfcwarehouse.api.dto.ItemResponseDTO
 import com.github.sfdez0.nfcwarehouse.api.mapper.toResponse
 import com.github.sfdez0.nfcwarehouse.api.model.Item
 import com.github.sfdez0.nfcwarehouse.api.repository.ItemRepository
-import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 
@@ -15,29 +14,23 @@ class ItemService(
     private val storageSpaceService: StorageSpaceService,
 ) {
     /**
-     * Retrieves all Items as a [ItemResponseDTO] list.
+     * Retrieves all [Item] as a [ItemResponseDTO] list.
      *
      * @return A list of all items mapped to their response format.
      */
     fun getAll(): List<ItemResponseDTO> = itemRepository.findAll().map { it.toResponse() }
 
     /**
-     * Retrieves a specific Item by its unique ID and converts it to a [ItemResponseDTO].
+     * Retrieves a specific [Item] by its unique ID and converts it to a [ItemResponseDTO].
      *
      * @param id The unique ID of the item to find.
-     * @return The [ItemResponseDTO] if the item exists.
+     * @return The [ItemResponseDTO] if the item exists, or null if not found.
      * @throws ResponseStatusException 404 error if no item is found with the given [id].
      */
-    fun get(id: Long): ItemResponseDTO {
-        val dto =
-            itemRepository.findById(id).orElseThrow {
-                ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found")
-            }
-        return dto.toResponse()
-    }
+    fun get(id: Long): ItemResponseDTO? = itemRepository.findById(id).map { it.toResponse() }.orElse(null)
 
     /**
-     * Creates a new Item and associates it with an existing storage space.
+     * Creates a new [Item] and associates it with an existing storage space.
      * * This method fetches the required [StorageSpace] entity, maps the incoming
      * [ItemCreateDTO] to a new [Item], and saves it to the database.
      *
