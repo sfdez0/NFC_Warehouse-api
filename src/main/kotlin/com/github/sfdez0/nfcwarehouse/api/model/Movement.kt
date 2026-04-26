@@ -28,6 +28,12 @@ class Movement(
     @JoinColumn(name = "item_id")
     val item: Item,
     /**
+     * Movement N:1 Storage Space
+     */
+    @ManyToOne
+    @JoinColumn(name = "storage_space_id")
+    val storageSpace: StorageSpace,
+    /**
      * Quantity moved
      */
     val quantityChanged: Int,
