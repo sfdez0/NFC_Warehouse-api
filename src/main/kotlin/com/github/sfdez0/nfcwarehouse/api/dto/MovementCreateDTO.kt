@@ -1,7 +1,5 @@
 package com.github.sfdez0.nfcwarehouse.api.dto
 
-import java.time.Instant
-
 /**
  * Data payload for creating a new Movement.
  *

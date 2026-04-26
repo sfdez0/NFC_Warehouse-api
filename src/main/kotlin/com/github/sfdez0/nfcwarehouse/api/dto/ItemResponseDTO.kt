@@ -11,4 +11,5 @@ data class ItemResponseDTO(
     val name: String,
     val quantity: Int,
     val storageSpaceId: Long?,
+    val movements: List<MovementResponseDTO> = emptyList(),
 )

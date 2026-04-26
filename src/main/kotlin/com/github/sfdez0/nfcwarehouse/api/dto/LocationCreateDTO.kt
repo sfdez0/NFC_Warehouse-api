@@ -5,7 +5,7 @@ package com.github.sfdez0.nfcwarehouse.api.dto
  *
  * * This DTO defines the mandatory fields required to register a location in the system.
  */
-class LocationCreateDTO (
+class LocationCreateDTO(
     val name: String,
-    val description: String?
+    val description: String?,
 )

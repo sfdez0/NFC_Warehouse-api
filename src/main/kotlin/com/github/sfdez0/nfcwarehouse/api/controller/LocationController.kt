@@ -2,7 +2,6 @@ package com.github.sfdez0.nfcwarehouse.api.controller
 
 import com.github.sfdez0.nfcwarehouse.api.dto.LocationCreateDTO
 import com.github.sfdez0.nfcwarehouse.api.dto.LocationResponseDTO
-import com.github.sfdez0.nfcwarehouse.api.model.Location
 import com.github.sfdez0.nfcwarehouse.api.service.LocationService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping

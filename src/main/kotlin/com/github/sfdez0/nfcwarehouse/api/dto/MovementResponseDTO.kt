@@ -2,14 +2,13 @@ package com.github.sfdez0.nfcwarehouse.api.dto
 
 import java.time.Instant
 
-
 /**
  * Movement Response DTO
  *
  * * This DTO flattens the relationship with Item by providing only the [itemId]
  * to prevent recursion.
  */
-class MovementResponseDTO (
+class MovementResponseDTO(
     val id: Long?,
     val itemId: Long?,
     val storageSpaceId: Long?,

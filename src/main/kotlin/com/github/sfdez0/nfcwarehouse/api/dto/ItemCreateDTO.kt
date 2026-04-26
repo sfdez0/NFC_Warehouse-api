@@ -8,7 +8,6 @@ package com.github.sfdez0.nfcwarehouse.api.dto
  * parent container.
  */
 data class ItemCreateDTO(
-    val id: Long?,
     val name: String,
     val quantity: Int,
     val storageSpaceId: Long,
