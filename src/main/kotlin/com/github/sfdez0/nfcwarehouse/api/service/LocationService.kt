@@ -1,5 +1,6 @@
 package com.github.sfdez0.nfcwarehouse.api.service
 
+import com.github.sfdez0.nfcwarehouse.api.dto.LocationCreateDTO
 import com.github.sfdez0.nfcwarehouse.api.dto.LocationResponseDTO
 import com.github.sfdez0.nfcwarehouse.api.mapper.toResponse
 import com.github.sfdez0.nfcwarehouse.api.model.Location
@@ -37,16 +38,26 @@ class LocationService(
      */
     fun getEntity(id: Long): Location =
         locationRepository.findById(id).orElseThrow {
-            ResponseStatusException(HttpStatus.NOT_FOUND, "Storage Space not found")
+            ResponseStatusException(HttpStatus.NOT_FOUND, "Location not found")
         }
 
     /**
      * Creates a new [Location].
      *
-     * @param location The [Location] entity to create and save.
+     * @param dto The [Location] entity to create and save.
      * @return The [Location] including its database-generated ID.
      */
-    fun create(location: Location): Location = locationRepository.save(location)
+    fun create(dto: LocationCreateDTO): LocationResponseDTO {
+        val newLocation =
+            Location(
+                name = dto.name,
+                description = dto.description,
+            )
+
+        val savedLocation = locationRepository.save(newLocation)
+
+        return savedLocation.toResponse()
+    }
 
     /**
      * Deletes an [Location] by its unique ID.

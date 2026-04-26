@@ -1,5 +1,6 @@
 package com.github.sfdez0.nfcwarehouse.api.controller
 
+import com.github.sfdez0.nfcwarehouse.api.dto.LocationCreateDTO
 import com.github.sfdez0.nfcwarehouse.api.dto.LocationResponseDTO
 import com.github.sfdez0.nfcwarehouse.api.model.Location
 import com.github.sfdez0.nfcwarehouse.api.service.LocationService
@@ -48,8 +49,8 @@ class LocationController(
      */
     @PostMapping
     fun createLocation(
-        @RequestBody location: Location,
-    ): ResponseEntity<Location> {
+        @RequestBody location: LocationCreateDTO,
+    ): ResponseEntity<LocationResponseDTO> {
         val newLocation = locationService.create(location)
 
         val uri =
