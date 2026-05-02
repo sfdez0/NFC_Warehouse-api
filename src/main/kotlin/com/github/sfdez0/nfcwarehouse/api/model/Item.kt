@@ -45,5 +45,5 @@ class Item(
      */
     @OneToMany(mappedBy = "item", cascade = [CascadeType.ALL])
     @JsonManagedReference
-    val movements: MutableList<Movement> = mutableListOf(),
+    val movements: MutableSet<Movement> = mutableSetOf(),
 )

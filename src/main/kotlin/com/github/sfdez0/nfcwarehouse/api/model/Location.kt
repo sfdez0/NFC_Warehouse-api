@@ -36,5 +36,5 @@ class Location(
      */
     @OneToMany(mappedBy = "location", cascade = [(CascadeType.ALL)])
     @JsonManagedReference
-    val storageSpaces: MutableList<StorageSpace> = mutableListOf(),
+    val storageSpaces: MutableSet<StorageSpace> = mutableSetOf(),
 )

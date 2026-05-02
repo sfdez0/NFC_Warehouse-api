@@ -1,6 +1,7 @@
 package com.github.sfdez0.nfcwarehouse.api.model
 
 import jakarta.persistence.Entity
+import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
@@ -24,13 +25,13 @@ class Movement(
     /**
      * Movement N:1 Item
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     val item: Item,
     /**
      * Movement N:1 Storage Space
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storage_space_id")
     val storageSpace: StorageSpace,
     /**

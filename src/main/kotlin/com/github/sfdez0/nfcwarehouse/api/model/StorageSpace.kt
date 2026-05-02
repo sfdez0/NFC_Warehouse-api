@@ -46,5 +46,5 @@ class StorageSpace(
      */
     @OneToMany(mappedBy = "storageSpace", cascade = [CascadeType.ALL])
     @JsonManagedReference
-    val items: MutableList<Item> = mutableListOf(),
+    val items: MutableSet<Item> = mutableSetOf(),
 )
